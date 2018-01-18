@@ -1,5 +1,6 @@
 ﻿using LDR.WebAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LDR.WebAPI.Controllers
@@ -18,6 +19,24 @@ namespace LDR.WebAPI.Controllers
                 this.context.Points.Add(new Point { X = 2.1, Y = 3.21 });
                 this.context.SaveChanges();
             }
+        }
+
+        [HttpGet]
+        public IEnumerable<Point> GetAll()
+        {
+            return this.context.Points;
+        }
+
+        [HttpGet("{id}", Name = "GetPoint")]
+        public IActionResult GetById(long id)
+        {
+            var item = this.context.Points.FirstOrDefault(x => x.Id == id);
+            if (item == null)
+            {
+                return this.NotFound();
+            }
+
+            return new ObjectResult(item);
         }
     }
 }
