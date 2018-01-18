@@ -1,48 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LDR.WebAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Linq;
 
 namespace LDR.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     public class CalculationController : ControllerBase
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly LDRContext context;
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        public CalculationController(LDRContext context)
         {
-            return $"value {id}";
-        }
+            this.context = context;
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            //return Ok();
+            if (this.context.Points.Count() == 0)
+            {
+                this.context.Points.Add(new Point { X = 2.1, Y = 3.21 });
+                this.context.SaveChanges();
+            }
         }
     }
 }
