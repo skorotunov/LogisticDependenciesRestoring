@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LDR.WebAPI.Models
 {
     public class Function
     {
+        public Function()
+        {
+        }
+
         public Function(int count)
         {
             this.PointsCount = count;
+
             this.Points = new Dictionary<int, KeyValuePair<double, double>>(count);
         }
 

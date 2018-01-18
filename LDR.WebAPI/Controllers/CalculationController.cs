@@ -45,10 +45,4 @@ namespace LDR.WebAPI.Controllers
             //return Ok();
         }
     }
-
-    public class Value
-    {
-        [MinLength(2)]
-        public string Test { get; set; }
-    }
 }
