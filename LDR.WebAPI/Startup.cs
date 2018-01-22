@@ -15,7 +15,17 @@ namespace LDR.WebAPI
             services.AddMvc();
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new Info { Title = "LDR API", Version = "v1" });
+                x.SwaggerDoc(
+                    "v1",
+                    new Info
+                    {
+                        Title = "LDR API",
+                        Version = "v1",
+                        Description = "Initial LDR ASP.NET Core Web API",
+                        TermsOfService = "None",
+                        Contact = new Contact { Name = "Sergey Korotunov", Email = "skorotunov@yahoo.com", Url = "https://www.linkedin.com/in/skorotunov" },
+                        License = new License { Name = "Use under some licemse", Url = "https://example.com/license" }
+                    });
             });
         }
 

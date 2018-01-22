@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace LDR.WebAPI.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class CalculationController : ControllerBase
     {
@@ -41,6 +42,8 @@ namespace LDR.WebAPI.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Point), 201)]
+        [ProducesResponseType(typeof(Point), 400)]
         public IActionResult Create([FromBody] Point point)
         {
             if (point == null)
