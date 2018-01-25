@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
 
 namespace LDR.WebAPI
 {
@@ -26,6 +28,10 @@ namespace LDR.WebAPI
                         Contact = new Contact { Name = "Sergey Korotunov", Email = "skorotunov@yahoo.com", Url = "https://www.linkedin.com/in/skorotunov" },
                         License = new License { Name = "Use under some licemse", Url = "https://example.com/license" }
                     });
+
+                string basePath = AppContext.BaseDirectory;
+                string xmlPath = Path.Combine(basePath, "LDR.WebAPI.xml");
+                x.IncludeXmlComments(xmlPath);
             });
         }
 
